@@ -1,0 +1,94 @@
+1.Exploring AWS CloudShell and the AWS Cloud9 IDE. 
+Part A 
+=========================
+Step 1: Log in to AWS Management Console 
+1. Go to AWS Console. 
+2. Navigate to EC2 Dashboard.
+=====================
+Step 2: Launch an EC2 Instance 
+1. Click on "Launch Instance". 
+2. Enter the instance name. 
+3. Choose an Amazon Machine Image (AMI) (e.g., Amazon Linux, Ubuntu). 
+4. Select an Instance Type (e.g., t2.micro for free tier). 
+5. Configure key pair (download and keep it safe). 
+6. Configure network settings (allow SSH, HTTP, etc.). 
+7. Click Launch Instance. 
+=========================
+Step 3: Connect to EC2 Instance 
+1. Go to Instances in EC2 Dashboard. 
+2. Copy the Public IP of your instance. 
+Open a terminal and run: 
+css 
+CopyEdit 
+ssh -i your-key.pem ec2-user@your-public-ip 
+3.  (For Ubuntu, use ubuntu instead of ec2-user) 
+  ========================
+Step 4: Verify Web Server (Optional) 
+Install Apache/Nginx: 
+pgsql 
+CopyEdit 
+sudo yum install httpd -y 
+sudo systemctl start httpd 
+sudo systemctl enable httpd 
+1.  
+Create a simple HTML file in /var/www/html/index.html: 
+html 
+CopyEdit 
+<h1>EC2 Web Server is Working!</h1> 
+2.  
+3. Open the public IP in a browser to check. 
+  ======================
+Step 5: Pricing Check 
+1. Go to EC2 Dashboard > Instances. 
+2. Click on the Instance ID to see billing and details. 
+=========================================================================================================================================================================
+Part B 
+Step 1: Access AWS CloudShell 
+1. Sign in to the AWS Management Console. 
+2. Click on CloudShell in the AWS services menu. 
+3. Wait for the CloudShell environment to initialize. 
+  =================================
+Step 2: Explore CloudShell 
+1. Run basic commands to check the environment. 
+Verify AWS CLI is available by running: 
+Css CopyEdit 
+aws --version 
+2. Navigate and check available directories. 
+  =====================================
+Step 3: Create an EC2 Instance Using CloudShell 
+Use the AWS CLI to launch an instance: 
+Css CopyEdit 
+aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name 
+MyKeyPair --security-groups MySecurityGroup 
+1. Note down the Instance ID from the response. 
+  ===============================
+Step 4: Upload a File to CloudShell 
+1. Click Upload File in CloudShell. 
+2. Select a file from your system to upload. 
+  ===================================
+Step 5: Work with Multiple Environments 
+1. Split CloudShell into multiple sessions if needed. 
+2. Use different sessions for different tasks. 
+  =========================
+Step 6: Download a File from CloudShell 
+1. Use the Download option to save files locally. 
+  ============================
+Step 7: Remove and Upload a File with Content 
+Delete a file using: 
+bash 
+CopyEdit 
+rm filename 
+1. Create a new file and add content: 
+Bash CopyEdit 
+echo "Hello, CloudShell!" > newfile.txt 
+  ==========================
+Step 8: Create a Virtual Private Cloud (VPC) 
+Since CloudShell doesn’t support upload/download, use AWS CLI: 
+lua 
+CopyEdit 
+aws ec2 create-vpc --cidr-block 10.0.0.0/16 
+1.  
+  =======================
+Step 9: Delete CloudShell 
+1. Click on Actions in the top-right corner. 
+2. Select Delete CloudShell.

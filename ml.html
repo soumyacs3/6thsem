@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML PROGRAMS WITH OUTPUT</title>
+     <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .headline {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .image-box {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-box:hover {
+            transform: scale(1.05);
+        }
+        .image-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .footer img{
+            width: 50px; /* Adjust size */
+            vertical-align: middle;
+        }
+
+    </style>
+</head>
+<body>
+    <h1 class="headline">MACHINE LEARNING LAB</h1>
+    <h4>CLICK ON PROGRAM BUTTON BELOW AND CODE WILL BE COPIED</h4>
+
+
+    <button onclick="copyText('ml1.txt')">Copy PROGRAM 1</button>
+    <button onclick="copyText('ml2.txt')">Copy PROGRAM 2</button>
+    <button onclick="copyText('ml3.txt')">Copy PROGRAM 3</button>
+    <button onclick="copyText('ml4.txt')">Copy PROGRAM 4</button>
+    <button onclick="copyText('ml5.txt')">Copy PROGRAM 5</button>
+    <button onclick="copyText('ml6.txt')">Copy PROGRAM 6</button>
+    <button onclick="copyText('ml7.txt')">Copy PROGRAM 7</button>
+    <button onclick="copyText('ml8.txt')">Copy PROGRAM 8</button>
+    <button onclick="copyText('ml9.txt')">Copy PROGRAM 9</button>
+    <button onclick="copyText('ml10.txt')">Copy PROGRAM 10</button>
+
+   
+
+    <script>
+        function copyText(fileName) {
+            fetch(fileName)  
+                .then(response => response.text())
+                .then(text => {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert( fileName + ' code, output, steps copied');
+                    }).catch(err => {
+                        console.error('Error copying text: ', err);
+                    });
+                })
+                .catch(err => {
+                    console.error('Error loading file: ', err);
+                    alert('Failed to load file ' + fileName);
+                });
+        }
+    </script>
+
+     
+
+</body>
+
+    <footer class="footer">
+   
+    <p>&copy; Soumya B</p>
+</footer>
+</html>

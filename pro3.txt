@@ -1,0 +1,147 @@
+'''
+Program 3:
+Train a custom Word2Vec model on a small dataset. Train embeddings on a domain- specific corpus (e.g., legal, medical) and analyze how embeddings capture domain-specific semantics.
+Theory:
+This program builds a domain-specific Word2Vec model for a medical corpus, visualizes the learned word embeddings using t-SNE, and retrieves similar words using the trained model.
+1.	Word Embeddings & Word2Vec
+•	Word Embeddings are numerical vector representations of words that capture their meanings and relationships.
+•	Word2Vec is a popular neural network-based algorithm that learns word embeddings from a corpus.
+•	There are two architectures for Word2Vec:
+o	CBOW (Continuous Bag of Words): Predicts a word based on surrounding context words.
+o	Skip-Gram: Predicts surrounding context words given a central word.
+In this program, we use the Word2Vec model to train embeddings on a medical corpus, capturing the domain-specific relationships between words.
+
+2.	Pre-processing the Corpus
+•	Tokenization: Splitting sentences into words.
+•	Lowercasing: Normalizing text to avoid duplication due to case differences.
+
+3.	Training the Word2Vec Model
+•	Hyperparameters used in training:
+o	vector_size=100: Each word is represented by a 100-dimensional vector.
+o	window=5: Words within a 5-word context window influence each other.
+o	min_count=1: Even words occurring once are included in training.
+o	workers=4: Uses 4 CPU threads for parallel processing.
+o	epochs=50: The training iterates over the dataset 50 times for better learning.
+
+ 
+4.	Extracting Word Embeddings for Visualization
+•	Embeddings: After training, every word has a 100-dimensional vector representation.
+•	Dimensionality Reduction: We apply t-SNE (t-distributed Stochastic Neighbor Embedding) to reduce 100 dimensions to 2D for visualization.
+           2
+
+5.	Visualizing Word Embeddings using t-SNE
+•	Why use t-SNE?
+o	Helps visualize high-dimensional data in 2D space.
+o	Maintains the relative closeness of similar words.
+•	Scatter Plot
+o	Words that are semantically related will cluster together.
+o	Example: "vaccine" and "infection" may appear close to each other.
+
+6.	Finding Semantically Similar Words
+•	Uses the trained Word2Vec model to retrieve top-N most similar words.
+•	Cosine Similarity is used to find similarity between word vectors:
+
+
+
+
+Example:
+o	Query: "treatment"
+o	Output: "therapy", "medicine", "procedure", etc.
+Step-by-Step Execution Flow
+Step 1: Install and Import Required Libraries gensim → Used for Word2Vec model training. matplotlib → Used for plotting word embeddings. Word2Vec: Implements word embedding training.
+TSNE: Reduces word embeddings from 100D → 2D for visualization.
+ 
+Step 2: Create a Domain-Specific Corpus
+A small medical dataset with terms related to diseases, treatments, and diagnoses. Step 3: Preprocess the Corpus
+Converts all sentences to lowercase. Tokenizes sentences into lists of words. Step 4: Train Word2Vec Model
+Feeds tokenized data into Word2Vec. Trains for 50 epochs to improve accuracy.
+Step 5: Extract Word Embeddings for Visualization Retrieves word embeddings from the trained model. Step 6: Apply t-SNE for Dimensionality Reduction Reduces 100D word vectors to 2D for visualization. Step 7: Plot Word Embeddings
+Scatter Plot:
+•	Words appear closer if they are semantically related.
+•	Example: "vaccine" and "infection" may cluster together. Step 8: Find Similar Words
+•	Retrieves top 5 similar words based on cosine similarity. Step 9: Test Similar Word Retrieval
+Key Learnings
+✅	Word2Vec	can	learn	medical	domain	relationships	from	a	small	corpus.
+✅	t-SNE	effectively	reduces	high-dimensional	word	vectors	for	visualization.
+✅ Semantic similarity helps retrieve alternative words for better NLP applications.
+
+================================
+'''
+
+# Install required libraries
+!pip install gensim matplotlib
+
+# Import libraries
+from gensim.models import Word2Vec
+from gensim.models.word2vec import LineSentence 
+import matplotlib.pyplot as plt
+from sklearn.manifold import TSNE
+ 
+import numpy as np
+
+# Sample domain-specific corpus (medical domain) 
+medical_corpus = [
+"The patient was diagnosed with diabetes and hypertension.", "MRI scans reveal abnormalities in the brain tissue.",
+"The treatment involves antibiotics and regular monitoring.", "Symptoms include fever, fatigue, and muscle pain.",
+"The vaccine is effective against several viral infections.", "Doctors recommend physical therapy for recovery.", "The clinical trial results were published in the journal.",
+"The surgeon performed a minimally invasive procedure.",
+"The prescription includes pain relievers and anti-inflammatory drugs.", "The diagnosis confirmed a rare genetic disorder."
+]
+
+# Preprocess corpus (tokenize sentences)
+processed_corpus = [sentence.lower().split() for sentence in medical_corpus]
+
+# Train a Word2Vec model 
+print("Training Word2Vec model...")
+model = Word2Vec(sentences=processed_corpus, vector_size=100, window=5, min_count=1, workers=4, epochs=50)
+print("Model training complete!")
+
+# Extract embeddings for visualization 
+words = list(model.wv.index_to_key)
+embeddings = np.array([model.wv[word] for word in words])
+
+# Dimensionality reduction using t-SNE
+tsne = TSNE(n_components=2, random_state=42, perplexity=5, n_iter=300) 
+tsne_result = tsne.fit_transform(embeddings)
+
+# Visualization of word embeddings 
+plt.figure(figsize=(10, 8))
+plt.scatter(tsne_result[:, 0], tsne_result[:, 1], color="blue") 
+for i, word in enumerate(words):
+    plt.text(tsne_result[i, 0] + 0.02, tsne_result[i, 1] + 0.02, word, fontsize=12) 
+plt.title("Word Embeddings Visualization (Medical Domain)") 
+plt.xlabel("Dimension 1")
+plt.ylabel("Dimension 2") 
+plt.grid(True)
+plt.show()
+ 
+# Analyze domain-specific semantics
+def find_similar_words(input_word, top_n=5): 
+    try:
+        similar_words = model.wv.most_similar(input_word, topn=top_n) 
+        print(f"Words similar to '{input_word}':")
+        for word, similarity in similar_words: 
+            print(f" {word} ({similarity:.2f})")
+    except KeyError:
+        print(f"'{input_word}' not found in vocabulary.")
+
+# Example: Generate semantically similar words 
+find_similar_words("treatment") 
+find_similar_words("vaccine")
+
+
+'''
+============================
+Output:
+Words similar to 'treatment': procedure. (0.27)
+confirmed (0.15)
+muscle (0.13)
+monitoring. (0.12)
+fatigue, (0.12)
+
+Words similar to 'vaccine': brain (0.26)
+recommend (0.21)
+procedure. (0.19)
+therapy (0.19)
+in (0.18)
+'''

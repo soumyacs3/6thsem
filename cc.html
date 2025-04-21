@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLOUD COMPUTING</title>
+     <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .headline {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .footer img{
+            width: 50px; /* Adjust size */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="headline">CLOUD COMPUTING LAB</h1>
+    <h4>CLICK ON BUTTON BELOW AND STEPS WILL BE COPIED</h4>
+    <button onclick="copyText('cc1.txt')">Copy PROGRAM 1</button>
+    <button onclick="copyText('cc2.txt')">Copy PROGRAM 2(S3)</button>
+    <button onclick="copyText('cc3.txt')">Copy PROGRAM 3(DYNAMO DB)</button>
+    <button onclick="copyText('cc4.txt')">Copy PROGRAM 4(REST API)</button>
+    <button onclick="copyText('cc5.txt')">Copy PROGRAM 5(LAMBDA)</button>
+    <button onclick="copyText('cc6.txt')">Copy PROGRAM 6(LAMBDA)</button>
+    <button onclick="copyText('cc7.txt')">Copy PROGRAM 7(LAMBDA)</button>
+    <button onclick="copyText('cc8.txt')">Copy PROGRAM 8(LAMBDA)</button>
+    <button onclick="copyText('cc9.txt')">Copy PROGRAM 9(LAMBDA)</button>
+    <button onclick="copyText('cc10.txt')">Copy PROGRAM 10(LAMBDA)</button>
+
+    <script>
+        function copyText(fileName) {
+            fetch(fileName)  // Fetch the text file
+                .then(response => response.text())
+                .then(text => {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert( fileName + ' CC steps copied');
+                    }).catch(err => {
+                        console.error('Error copying text: ', err);
+                    });
+                })
+                .catch(err => {
+                    console.error('Error loading file: ', err);
+                    alert('Failed to load file ' + fileName);
+                });
+        }
+    </script>
+
+</body>
+
+     <footer class="footer">
+   
+    <p>&copy; Soumya B</p>
+</footer>
+</html>

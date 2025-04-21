@@ -1,0 +1,47 @@
+3.
+
+Working with Amazon DynamoDB 
+Step 1: Create a DynamoDB Table 
+1. Sign in to AWS Management Console. 
+2. Navigate to DynamoDB. 
+3. Click Create Table. 
+4. Enter a Table Name (e.g., StudentData). 
+5. Set a Partition Key (Primary Key), e.g., USN (Unique Student Number). 
+6. Choose DynamoDB Standard-IA for cost efficiency. 
+7. Click Create. 
+  =========================
+Step 2: Insert Items into the Table 
+1. After table creation, select your table. 
+2. Click Explore Table Items. 
+3. Click Create Item. 
+Choose JSON format and enter: 
+json 
+CopyEdit 
+{ 
+} 
+"USN": { "S": "03" }, 
+"NAME": { "S": "XYZ" }, 
+"DEPT": { "S": "MECH" }, 
+"AGE": { "N": "13" } 
+4. Click Save. 
+  ==========================
+Step 3: Update an Item 
+1. Go to Explore Table Items. 
+2. Select an item to update. 
+3. Modify the JSON data or values. 
+4. Click Save. 
+  ===========================
+Step 4: Query the Table 
+1. Go to the Query tab. 
+2. Enter a Partition Key value (e.g., USN: "03"). 
+3. Click Run to fetch the item. 
+  ===============================
+Step 5: Delete an Item 
+1. Select an item in the table. 
+2. Click Delete. 
+3. Confirm the deletion. 
+  =============================
+Step 6: Delete the Table (If Needed) 
+1. Go to Tables. 
+2. Select your table. 
+3. Click Delete Table.

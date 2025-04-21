@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEN AI PROGRAMS</title>
+     <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <style>
+        button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        
+        .headline {
+            font-size: 36px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .footer img{
+            width: 50px; /* Adjust size */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="headline">GENERATIVE AI LAB </h1>
+    <h4>CLICK ON PROGRAM BUTTON BELOW AND CODE WILL BE COPIED</h4>
+    <h3>If you get "MODULE NOT FOUND ERROR", run "!pip install --upgrade gensim" or !pip install --upgrade numpy" BEFORE EXECUTION according to requirement </h3>
+    <button onclick="copyText('pro1.txt')">Copy PROGRAM 1</button>
+    <button onclick="copyText('pro2.txt')">Copy PROGRAM 2</button>
+    <button onclick="copyText('pro3.txt')">Copy PROGRAM 3</button>
+    <button onclick="copyText('pro4.txt')">Copy PROGRAM 4</button>
+    <button onclick="copyText('pro5.txt')">Copy PROGRAM 5</button>
+    <button onclick="copyText('pro6.txt')">Copy PROGRAM 6</button>
+    <button onclick="copyText('pro7.txt')">Copy PROGRAM 7</button>
+    <button onclick="copyText('pro8.txt')">Copy PROGRAM 8</button>
+    <button onclick="copyText('pro9.txt')">Copy PROGRAM 9</button>
+    <button onclick="copyText('pro10.txt')">Copy PROGRAM 10</button>
+
+    <script>
+        function copyText(fileName) {
+            fetch(fileName)  // Fetch the text file
+                .then(response => response.text())
+                .then(text => {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert( fileName + ' code, output, steps copied');
+                    }).catch(err => {
+                        console.error('Error copying text: ', err);
+                    });
+                })
+                .catch(err => {
+                    console.error('Error loading file: ', err);
+                    alert('Failed to load file ' + fileName);
+                });
+        }
+    </script>
+
+</body>
+
+     <footer class="footer">
+   
+    <p>&copy; Soumya B</p>
+</footer>
+</html>

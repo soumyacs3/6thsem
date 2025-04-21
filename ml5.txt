@@ -1,0 +1,67 @@
+ PROGRAM 5 
+ 
+Develop a program to implement k-Nearest Neighbour algorithm to classify the randomly generated 100 
+values of x in the range of [0,1]. Perform the following based on dataset generated. a. Label the first 50 
+points {x1,……,x50} as follows: if (xi ≤ 0.5), then xi ∊ Class1, else xi ∊ Class1 b. Classify the remaining 
+points, x51,……,x100 using KNN. Perform this for k=1,2,3,4,5,20,30 
+import numpy as np 
+import matplotlib.pyplot as plt 
+from sklearn.neighbors import KNeighborsClassifier 
+from sklearn.metrics import accuracy_score 
+# Step 1: Generate 100 random values of x in the range [0, 1] 
+np.random.seed(42)  # For reproducibility 
+X = np.random.rand(100, 1)  # 100 random values in range [0, 1] 
+# Step 2: Label the first 50 points 
+y = np.zeros(100)  # Initialize the labels array 
+# Classify first 50 points 
+for i in range(50): 
+    if X[i] <= 0.5: 
+        y[i] = 1  # Class1 
+    else: 
+        y[i] = 2  # Class2 
+# Step 3: Classify the remaining 50 points (x51 to x100) using KNN for different values of k 
+X_train = X[:50]  # First 50 data points for training 
+y_train = y[:50]  # First 50 labels for training 
+X_test = X[50:]  # Remaining 50 points for testing 
+# k-values to test 
+k_values = [1, 2, 3, 4, 5, 20, 30] 
+# Store accuracy for each k-value 
+accuracies = [] 
+# Step 4: Perform classification for different k values and evaluate accuracy 
+for k in k_values: 
+    knn = KNeighborsClassifier(n_neighbors=k) 
+    knn.fit(X_train, y_train)  # Train KNN model 
+    y_pred = knn.predict(X_test)  # Make predictions 
+    accuracy = accuracy_score(y[50:], y_pred)  # Calculate accuracy 
+    accuracies.append(accuracy) 
+    # Print the accuracy for each k 
+    print(f'Accuracy for k={k}: {accuracy:.4f}') 
+# Step 5: Visualize the data and classification for each k value 
+plt.figure(figsize=(12, 10)) 
+# Plot the training points 
+plt.scatter(X_train, y_train, color='blue', label='Training Data') 
+# Plot the test points and classify them for each k 
+for k, accuracy in zip(k_values, accuracies): 
+    plt.scatter(X_test, y[50:], label=f'Test Data (k={k}, Accuracy={accuracy:.4f})') 
+plt.xlabel('X values') 
+plt.ylabel('Classes') 
+plt.title('k-NN Classification for Randomly Generated Data') 
+plt.legend() 
+plt.show() 
+# Visualizing KNN decision boundaries for different k values 
+X_full = np.linspace(0, 1, 500).reshape(-1, 1) 
+plt.figure(figsize=(12, 10)) 
+# Plot decision boundaries for different k values 
+for k in k_values: 
+    knn = KNeighborsClassifier(n_neighbors=k) 
+    knn.fit(X_train, y_train)  # Train KNN model 
+    y_pred_full = knn.predict(X_full)  # Predict for the whole range [0, 1] 
+    plt.plot(X_full, y_pred_full, label=f'Decision Boundary for k={k}') 
+plt.scatter(X_train, y_train, color='blue', label='Training Data') 
+plt.scatter(X_test, y[50:], color='red', label='Test Data') 
+ 
+plt.xlabel('X values') 
+plt.ylabel('Classes') 
+plt.title('Decision Boundaries for Different k in k-NN') 
+plt.legend() 
+plt.show()

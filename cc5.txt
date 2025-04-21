@@ -1,0 +1,27 @@
+5.Creating Lambda Functions Using the AWS SDK for Python 
+Step 1: Sign in to AWS Console 
+1. Go to the AWS Management Console. 
+2. Navigate to AWS Lambda. 
+  =========================
+Step 2: Create a Lambda Function 
+1. Click Create Function. 
+2. Choose Author from Scratch. 
+3. Enter a Function Name. 
+4. Select a Runtime (e.g., Python, Node.js). 
+5. Click Create Function. 
+======================
+Step 3: Configure the Function 
+1. Open the function. 
+2. Scroll to Configuration. 
+3. Enable Function URL (if required). 
+4. Click Deploy. 
+  =======================
+Step 4: Test the Function 
+1. Click Test. 
+2. Create a new test event. 
+3. Run the function and check the output. 
+  =========================
+Step 5: Verify the Function URL 
+1. Copy the Function URL. 
+2. Paste it into a browser. 
+3. If configured correctly, you should see a response.
