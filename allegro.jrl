@@ -1,0 +1,36 @@
+\t (00:00:02) allegro 23.1 P001 Windows SPB 64-bit Edition
+\t (00:00:02)     Journal start - Sun Apr 20 21:14:00 2025
+\t (00:00:02)         Host=GEETHA User=Jeevan Pid=9764 CPUs=8
+\t (00:00:02) CmdLine= C:\Cadence\SPB_23.1\tools\bin\allegro.exe
+\t (00:00:02) 
+   (00:00:02) Loading axlcore.cxt 
+   (00:00:02) function _saveSelSet redefined
+   (00:00:02) function _restoreSelSet redefined
+   (00:00:02) function findAllOfType redefined
+   (00:00:02) function ashFindAllClines redefined
+   (00:00:02) function ashFindAllClinesegs redefined
+   (00:00:02) 
+   (00:00:02) 
+   (00:00:02) ^
+   (00:00:02) PARSER WARNING at line 185 column 1 of file Vsmt.il
+   (00:00:02) *WARNING* (Parser): illegal character '\0' ignored
+   (00:00:02) 
+   (00:00:02) 
+   (00:00:02) ^
+   (00:00:02) PARSER WARNING at line 267 column 1 of file cds2cc.il
+   (00:00:02) *WARNING* (Parser): illegal character '\0' ignored
+\t (00:00:05) Opening existing design...
+\i (00:00:05) QtSignal SPBFoldDockArea FoldAreaTabWidget currentChanged "CT0748-BD02-01_08APR2025_new1234"
+\d (00:00:05) Design opened: C:/Users/Jeevan/Downloads/CT0748-BD02-01_08APR2025_new1234.brd
+\i (00:00:05) trapsize 17533
+\i (00:00:05) trapsize 18320
+\i (00:00:05) trapsize 13002
+\i (00:00:06) trapsize 17367
+\i (00:00:06) trapsize 12088
+\i (00:00:06) placementedit 
+\i (00:00:15) open 
+\i (00:00:24) fillin "C:/Users/Jeevan/Desktop/2024/CT_VIGAR/CT0748-BD02-01_18APR2025_1804.brd"
+\i (00:00:24) cd "C:/Users/Jeevan/Desktop/2024/CT_VIGAR"
+\t (00:00:24) Opening existing design...
+\i (00:00:24) trapsize 31511
+\t (00:00:24)     Journal end - Sun Apr 20 21:14:22 2025
