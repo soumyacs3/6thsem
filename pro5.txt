@@ -1,14 +1,9 @@
-'''Program 5: Use word embeddings to create meaningful sentences for creative tasks. Retrieve similar words for a seed word. Create a sentence or story using these words as a starting point. Write a program that: Takes a seed word. Generates similar words. Constructs a short paragraph using these words.
-==================================
-'''
 import gensim.downloader as api
 import random
 import nltk
 from nltk.tokenize import sent_tokenize
-# Ensure required resources are downloaded
 nltk.download('punkt')
-# Load pre-trained word vectors print("Loading pre-trained word vectors...")
-word_vectors = api.load("glove-wiki-gigaword-100") # 100D GloVe word embeddings 
+word_vectors = api.load("glove-wiki-gigaword-100")
 print("Word vectors loaded successfully!")
 def get_similar_words(seed_word, top_n=5):
 
@@ -33,7 +28,6 @@ def generate_paragraph(seed_word):
     paragraph = [generate_sentence(seed_word, similar_words) for _ in range(4)]
     return " ".join(paragraph)
 
-# Example usage
 seed_word = input("Enter a seed word: ")
 paragraph = generate_paragraph(seed_word)
 print("\nGenerated Paragraph:\n")
