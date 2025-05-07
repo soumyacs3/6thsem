@@ -1,19 +1,11 @@
-       PROGRAM 1 
- 
-Develop a program to create histograms for all numerical features and analyze the distribution of each 
-feature. Generate box plots for all numerical features and identify any outliers. Use California Housing 
-dataset. 
-import pandas as pd 
+ import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
 import seaborn as sns 
 from sklearn.datasets import fetch_california_housing 
-# Step 1: Load the California Housing dataset 
 california_housing = fetch_california_housing(as_frame=True) 
 df = california_housing.frame 
-# Step 2: Identify numerical columns 
 numerical_features = df.select_dtypes(include=[np.number]).columns.tolist() 
-# Step 3: Create histograms for each numerical feature 
 plt.figure(figsize=(15, 12)) 
 for i, feature in enumerate(numerical_features, 1): 
     plt.subplot(3, 3, i) 
@@ -23,7 +15,6 @@ for i, feature in enumerate(numerical_features, 1):
     plt.ylabel('Frequency') 
 plt.tight_layout() 
 plt.show() 
-# Step 4: Create box plots for each numerical feature to identify outliers 
 plt.figure(figsize=(15, 12)) 
 for i, feature in enumerate(numerical_features, 1): 
     plt.subplot(3, 3, i) 
@@ -32,8 +23,6 @@ for i, feature in enumerate(numerical_features, 1):
     plt.xlabel(feature) 
 plt.tight_layout() 
 plt.show() 
-# Step 5: Analyze distributions and outliers 
-# Identify outliers using the IQR (Interquartile Range) method for each numerical feature 
 for feature in numerical_features: 
     Q1 = df[feature].quantile(0.25) 
     Q3 = df[feature].quantile(0.75) 
