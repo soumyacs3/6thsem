@@ -1,7 +1,3 @@
-  PROGRAM 4 
- 
-Develop a program to demonstrate 2D transformation on basic objects 
-#In this program replace <file_path> with path of file
 import pandas as pd 
 def find_s_algorithm(file_path): 
     data = pd.read_csv(file_path) 
@@ -21,3 +17,14 @@ def find_s_algorithm(file_path):
 file_path = 'training_data.csv' 
 hypothesis = find_s_algorithm(file_path) 
 print("\nThe final hypothesis is:", hypothesis)
+
+
+File name:training_data.csv
+Outlook,Temperature,Humidity,Windy,PlayTennis
+Sunny,Hot,High,FALSE,No
+Sunny,Hot,High,TRUE,No
+Overcast,Hot,High,FALSE,Yes
+Rain,Cold,High,FALSE,Yes
+Rain,Cold,High,TRUE,No
+Overcast,Hot,High,TRUE,Yes
+Sunny,Hot,High,FALSE,No
