@@ -1,48 +1,47 @@
-import numpy as np 
-import matplotlib.pyplot as plt 
-from sklearn.neighbors import KNeighborsClassifier 
-from sklearn.metrics import accuracy_score 
-np.random.seed(42)  
-X = np.random.rand(100, 1) 
-y = np.zeros(100)  
-for i in range(50): 
-    if X[i] <= 0.5: 
-        y[i] = 1 
-    else: 
-        y[i] = 2 
-X_train = X[:50]  
-y_train = y[:50]  
-X_test = X[50:] 
-k_values = [1, 2, 3, 4, 5, 20, 30] 
-accuracies = [] 
-for k in k_values: 
-    knn = KNeighborsClassifier(n_neighbors=k) 
-    knn.fit(X_train, y_train) 
-    y_pred = knn.predict(X_test)  
-    accuracy = accuracy_score(y[50:], y_pred)  
-    accuracies.append(accuracy) 
-    print(f'Accuracy for k={k}: {accuracy:.4f}') 
-plt.figure(figsize=(12, 10)) 
-plt.scatter(X_train, y_train, color='blue', label='Training Data')  
-for k, accuracy in zip(k_values, accuracies): 
-    plt.scatter(X_test, y[50:], label=f'Test Data (k={k}, Accuracy={accuracy:.4f})') 
-plt.xlabel('X values') 
-plt.ylabel('Classes') 
-plt.title('k-NN Classification for Randomly Generated Data') 
-plt.legend() 
-plt.show() 
-X_full = np.linspace(0, 1, 500).reshape(-1, 1) 
-plt.figure(figsize=(12, 10)) 
-for k in k_values: 
-    knn = KNeighborsClassifier(n_neighbors=k) 
-    knn.fit(X_train, y_train) 
-    y_pred_full = knn.predict(X_full) 
-    plt.plot(X_full, y_pred_full, label=f'Decision Boundary for k={k}') 
-plt.scatter(X_train, y_train, color='blue', label='Training Data') 
-plt.scatter(X_test, y[50:], color='red', label='Test Data') 
- 
-plt.xlabel('X values') 
-plt.ylabel('Classes') 
-plt.title('Decision Boundaries for Different k in k-NN') 
-plt.legend() 
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+np.random.seed(42)
+X = np.random.rand(100, 1)
+y = np.zeros(100)
+for i in range(50):
+    if X[i] <= 0.5:
+        y[i] = 1
+    else:
+        y[i] = 2
+X_train = X[:50]
+y_train = y[:50]
+X_test = X[50:]
+k_values = [1, 2, 3, 4, 5, 20, 30]
+accuracies = []
+for k in k_values:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    y_pred = knn.predict(X_test)
+    accuracy = accuracy_score(y[50:], y_pred)
+    accuracies.append(accuracy)
+    print(f'Accuracy for k={k}: {accuracy:.4f}')
+plt.figure(figsize=(12, 10))
+plt.scatter(X_train, y_train, color='blue', label='Training Data')
+for k, accuracy in zip(k_values, accuracies):
+    plt.scatter(X_test, y[50:], label=f'Test Data (k={k}, Accuracy={accuracy:.4f})')
+plt.xlabel('X values')
+plt.ylabel('Classes')
+plt.title('k-NN Classification for Randomly Generated Data')
+plt.legend()
+plt.show()
+X_full = np.linspace(0, 1, 500).reshape(-1, 1)
+plt.figure(figsize=(12, 10))
+for k in k_values:
+    knn = KNeighborsClassifier(n_neighbors=k)
+    knn.fit(X_train, y_train)
+    y_pred_full = knn.predict(X_full)
+    plt.plot(X_full, y_pred_full, label=f'Decision Boundary for k={k}')  
+plt.scatter(X_train, y_train, color='blue', label='Training Data')
+plt.scatter(X_test, y[50:], color='red', label='Test Data')
+plt.xlabel('X values')
+plt.ylabel('Classes')
+plt.title('Decision Boundaries for Different k in k-NN')
+plt.legend()
 plt.show()
