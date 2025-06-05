@@ -1,10 +1,11 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ML PROGRAMS WITH OUTPUT</title>
-     <link rel="icon" type="image/png" href="./bjp.jpeg">
+    <link rel="icon" type="image/png" href="./bjp.jpeg">
     <style>
         button {
             margin: 10px;
@@ -53,17 +54,15 @@
             }
         }
 
-        .footer img{
-            width: 50px; /* Adjust size */
+        .footer img {
+            width: 50px;
             vertical-align: middle;
         }
-
     </style>
 </head>
 <body>
     <h1 class="headline">MACHINE LEARNING LAB</h1>
     <h4>CLICK ON PROGRAM BUTTON BELOW AND CODE WILL BE COPIED</h4>
-
 
     <button onclick="copyText('ml1.txt')">Copy PROGRAM 1</button>
     <button onclick="copyText('ml2.txt')">Copy PROGRAM 2</button>
@@ -80,15 +79,13 @@
     <button onclick="copyText('ml3copy.txt')">Copy PROGRAM 3 copy</button>
     <button onclick="copyText('ml5r.txt')">Copy PROGRAM 5r copy</button>
 
-
-
     <script>
         function copyText(fileName) {
-            fetch(fileName)  
+            fetch(fileName)
                 .then(response => response.text())
                 .then(text => {
                     navigator.clipboard.writeText(text).then(() => {
-                        alert( fileName + ' code, output, steps copied');
+                        alert(fileName + ' code, output, steps copied');
                     }).catch(err => {
                         console.error('Error copying text: ', err);
                     });
@@ -99,13 +96,10 @@
                 });
         }
     </script>
-
-
-
 </body>
 
-    <footer class="footer">
-
+<footer class="footer">
     <p>&copy; Soumya B</p>
 </footer>
-</html> 
+</html>
+-->
