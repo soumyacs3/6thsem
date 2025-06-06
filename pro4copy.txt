@@ -1,0 +1,31 @@
+#porgram4
+from gensim.downloader import load
+import torch
+from transformers import pipeline
+
+model = load("glove-wiki-gigaword-50")
+torch.manual_seed(42)
+generator = pipeline("text-generation", model="gpt2", tokenizer="gpt2")
+
+def enrich(prompt):
+    ep = ""
+    words = prompt.split()
+    for word in words:
+        try:
+            sw = model.most_similar(word, topn=3)
+            enw = [s for s, _ in sw]
+            ep += " " + " ".join(enw)
+        except KeyError:
+            ep += " " + word
+    print("Original Prompt:", prompt)
+    print("Enriched Prompt:", ep.strip())
+    response = generator(prompt, max_length=200, num_return_sequences=1,
+                         no_repeat_ngram_size=2, top_p=0.95, temperature=0.7)
+    print("Prompt response\n", response[0]["generated_text"])
+    response = generator(ep.strip(), max_length=200, num_return_sequences=1,
+                         no_repeat_ngram_size=2, top_p=0.95, temperature=0.7)
+    print("Enriched prompt response\n", response[0]["generated_text"])
+    return ep.strip()
+
+op = "lung cancer"
+ep = enrich(op)
